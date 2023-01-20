@@ -1,4 +1,5 @@
 using Store;
+using Store.Memory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,8 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
-builder.Services.AddSingleton<IBookRepository, Store.Memory.BookRepository>();
+builder.Services.AddSingleton<IBookRepository, BookRepository>();
+builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 builder.Services.AddSingleton<BookService>();
 
 var app = builder.Build();
