@@ -8,9 +8,9 @@ namespace Store
 {
     public class OrderPayment
     {
-        public string UniqueCode { get; }
-        public string Description { get; }
-        public IReadOnlyDictionary<string, string> Parameters { get; }
+        public string? UniqueCode { get; }
+        public string? Description { get; }
+        public IReadOnlyDictionary<string, string>? Parameters { get; }
         public OrderPayment(string uniqueCode, string description, IReadOnlyDictionary<string, string> parameters)
         {
             if (string.IsNullOrWhiteSpace(uniqueCode))

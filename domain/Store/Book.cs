@@ -8,7 +8,7 @@ public class Book
 	private readonly BookDto dto;
 
 	public int Id => dto.Id;
-	public string Isbn
+	public string? Isbn
 	{
 		get => dto.Isbn;
 		set 
@@ -19,12 +19,12 @@ public class Book
 			throw new ArgumentException(nameof(Isbn));
 		}
 	}
-	public string Author
+	public string? Author
 	{
 		get => dto.Author;
 		set => dto.Author = value?.Trim();
 	}
-	public string Title
+	public string? Title
 	{
 		get => dto.Title;
 		set
@@ -35,7 +35,7 @@ public class Book
 			dto.Title = value.Trim();
 		}
 	}
-	public string Description
+	public string? Description
 	{
 		get => dto.Description;
 		set => dto.Description = value;

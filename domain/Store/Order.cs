@@ -12,7 +12,7 @@ namespace Store
         private readonly OrderDto dto;
 
         public int Id => dto.Id;
-        public string CellPhone
+        public string? CellPhone
         {
             get => dto.CellPhone;
             set
@@ -23,7 +23,7 @@ namespace Store
                 dto.CellPhone = value;
             }
         }
-        public OrderDelivery Delivery
+        public OrderDelivery? Delivery
         {
             get
             {
@@ -47,7 +47,7 @@ namespace Store
                 dto.DeliveryParameters = value.Parameters.ToDictionary(p => p.Key, p => p.Value);
             }
         }
-        public OrderPayment Payment
+        public OrderPayment? Payment
         {
             get
             {
