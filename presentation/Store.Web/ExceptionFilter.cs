@@ -12,19 +12,19 @@ namespace Store.Web
 			this.webHostEnvironment = webHostEnvironment;
 		}
 
-		public void OnException(ExceptionContext context)
-		{
-			if (webHostEnvironment.IsDevelopment())
-				return;
+        public void OnException(ExceptionContext context)
+        {
+            if (webHostEnvironment.IsDevelopment())
+                return;
 
-			if (context.Exception.TargetSite.Name == "ThrowNoElementsException")
-			{
-				context.Result = new ViewResult
-				{
-					ViewName = "NotFound",
-					StatusCode = 404
-				};
-			}
-		}
-	}
+            if (context.Exception.TargetSite.Name == "ThrowNoElementsException")
+            {
+                context.Result = new ViewResult
+                {
+                    ViewName = "NotFound",
+                    StatusCode = 404
+                };
+            }
+        }
+    }
 }

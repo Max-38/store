@@ -16,33 +16,33 @@ namespace Store.Data.EF
 			this.dbContextFactory = dbContextFactory;
 		}
 
-		public Order Create()
-		{
-			var dbContext = dbContextFactory.Create(typeof(OrderRepository));
+        public async Task<Order> CreateAsync()
+        {
+            var dbContext = dbContextFactory.Create(typeof(OrderRepository));
 
-			var dto = Order.DtoFactory.Create();
-			dbContext.Orders.Add(dto);
-			dbContext.SaveChanges();
+            var dto = Order.DtoFactory.Create();
+            dbContext.Orders.Add(dto);
+            await dbContext.SaveChangesAsync();
 
-			return Order.Mapper.Map(dto);
-		}
+            return Order.Mapper.Map(dto);
+        }
 
-		public Order GetById(int id)
-		{
-			var dbContext = dbContextFactory.Create(typeof(OrderRepository));
+        public async Task<Order> GetByIdAsync(int id)
+        {
+            var dbContext = dbContextFactory.Create(typeof(OrderRepository));
 
-			var dto = dbContext.Orders
-							   .Include(order => order.Items)
-							   .Single(order => order.Id == id);
+            var dto = await dbContext.Orders
+									 .Include(order => order.Items)
+									 .SingleAsync(order => order.Id == id);
 
-			return Order.Mapper.Map(dto);
-		}
+            return Order.Mapper.Map(dto);
+        }
 
-		public void Update(Order order)
-		{
-			var dbContext = dbContextFactory.Create(typeof(OrderRepository));
+        public async Task UpdateAsync(Order order)
+        {
+            var dbContext = dbContextFactory.Create(typeof(OrderRepository));
 
-			dbContext.SaveChanges();
-		}
-	}
+            await dbContext.SaveChangesAsync();
+        }
+    }
 }
